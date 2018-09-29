@@ -49,18 +49,6 @@ def line_get_data(place):
 #CSVデータを読み込む。もし、次と呼ばれたりしたら、イテレーターを用いて、
 #next(リスト型データ)としたほうがいい。
 
-"""
-例：
-
-if __name__ == '__main__':
-    data=line_answer()　＃リストデータでCSVを読み込む
-    datum=iter(data)　　＃イテレータを生成
-    for i in range(3):
-        p=next(datum)
-        print(p[0]) #名前
-        print(p[1]) #URL
-"""
-
 def line_answer():
     data=[]
     csvfile = 'a.csv'
