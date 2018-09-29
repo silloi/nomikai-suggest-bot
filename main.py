@@ -65,7 +65,7 @@ def callback():
 def message_text(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text)
+        TextSendMessage(text=event.message.text+"へ飲みに行くぞ！") #event.message.text がメッセージの本文
     )
 
 
