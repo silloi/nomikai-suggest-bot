@@ -41,7 +41,7 @@ def line_get_data(place):
 
     data=json.loads(html.text)
 
-    with open('restcsvaurant.csv','w',newline='',encoding='utf-8') as w:
+    with open('a.csv','w',newline='',encoding='utf-8') as w:
         writer=csv.writer(w)
         for k in data['rest']:
             writer.writerow([k['name'],k['url']])
@@ -56,12 +56,14 @@ if __name__ == '__main__':
     data=line_answer()　＃リストデータでCSVを読み込む
     datum=iter(data)　　＃イテレータを生成
     for i in range(3):
-        print(next(datum))　
+        p=next(datum)
+        print(p[0]) #名前
+        print(p[1]) #URL
 """
 
 def line_answer():
     data=[]
-    csvfile = 'restcsvaurant.csv'
+    csvfile = 'a.csv'
     f = open(csvfile, "r",encoding="utf-8")
     reader = csv.reader(f)
     for x in reader:
@@ -109,12 +111,16 @@ def message_text(event):
         return None
     # この辺に地名をAPIに投げるコードを記述
     # 得られた店名とURLを nomiya_info に格納
-
-
+    text_split = event.message.text.split("へ")
+    place = text_split[0]
+    line_get_data(place)
+    nomiyas = line_answer()
+    nomiya=iter(nomiyas)　　#イテレータを生成
+    p=next(nomiya)
+    TEXT="{}へ飲みにいくぞ！ {}".format(p[0], p[1])
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text) #event.message.text がメッセージの本文
-        #TextSendMessage(text=nomiya_info)
+        TextSendMessage(text=TEXT) #event.message.text がメッセージの本文
     )
 
 
