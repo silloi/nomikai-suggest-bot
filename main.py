@@ -15,6 +15,9 @@
 import os
 import sys
 from argparse import ArgumentParser
+import requests
+import json
+import csv
 
 from flask import Flask, request, abort
 from linebot import (
@@ -65,9 +68,12 @@ def callback():
 def message_text(event):
     if not 'へ飲みに行くぞ' in event.message.text:
         return None
+    # この辺に地名をAPIに投げるコードを記述
+    # 得られた店名とURLを nomiya_info に格納
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=event.message.text) #event.message.text がメッセージの本文
+        #TextSendMessage(text=nomiya_info)
     )
 
 
