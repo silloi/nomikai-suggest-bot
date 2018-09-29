@@ -30,7 +30,8 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
 
-def line_answer(place):
+#スクレイピングでお店のデータをcsvデータで取得する。
+def line_get_data(place):
     data={'京都市':3404,'四条':3414,'河原町':3402}
     apikey='0600c456734c0f1315878fc5aeb29fa2&'
     place=data[place]
@@ -45,6 +46,28 @@ def line_answer(place):
         for k in data['rest']:
             writer.writerow([k['name'],k['url']])
 
+#CSVデータを読み込む。もし、次と呼ばれたりしたら、イテレーターを用いて、
+#next(リスト型データ)としたほうがいい。
+
+"""
+例：
+
+if __name__ == '__main__':
+    data=line_answer()　＃リストデータでCSVを読み込む
+    datum=iter(data)　　＃イテレータを生成
+    for i in range(3):
+        print(next(datum))　
+"""
+
+def line_answer():
+    data=[]
+    csvfile = 'restcsvaurant.csv'
+    f = open(csvfile, "r",encoding="utf-8")
+    reader = csv.reader(f)
+    for x in reader:
+        data.append(x)
+    f.close()
+    return data
 
 app = Flask(__name__)
 
@@ -86,6 +109,8 @@ def message_text(event):
         return None
     # この辺に地名をAPIに投げるコードを記述
     # 得られた店名とURLを nomiya_info に格納
+
+
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=event.message.text) #event.message.text がメッセージの本文
