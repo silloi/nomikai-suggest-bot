@@ -18,6 +18,7 @@ from argparse import ArgumentParser
 import requests
 import json
 import csv
+import random
 
 from flask import Flask, request, abort
 from linebot import (
