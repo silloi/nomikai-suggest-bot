@@ -103,9 +103,9 @@ def message_text(event):
     place = text_split[0]
     line_get_data(place)
     nomiyas = line_answer()
-    nomiya=iter(nomiyas)　　#イテレータを生成
-    p=next(nomiya)
-    TEXT="{}へ飲みにいくぞ！ {}".format(p[0], p[1])
+    #nomiya=iter(nomiyas)　　#イテレータを生成
+    #p=next(nomiya)
+    TEXT="{}へ飲みに行くぞ！".format(nomiyas)
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=TEXT) #event.message.text がメッセージの本文
