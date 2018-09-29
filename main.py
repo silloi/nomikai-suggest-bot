@@ -63,9 +63,11 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
+    if not 'へ飲みに行くぞ' in event.message.text:
+        return None
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text+"へ飲みに行くぞ！") #event.message.text がメッセージの本文
+        TextSendMessage(text=event.message.text) #event.message.text がメッセージの本文
     )
 
 
