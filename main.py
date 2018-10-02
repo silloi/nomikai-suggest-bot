@@ -118,7 +118,7 @@ def message_text(event):
         event.reply_token,
         TextSendMessage(text=TEXT) #event.message.text がメッセージの本文
     )
-    areacode_s = 'Initiated'
+    place, areacode_s = 'Initiated'
 
 
 if __name__ == "__main__":
