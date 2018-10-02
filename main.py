@@ -35,6 +35,7 @@ areacode_s = ''
 place = ''
 #スクレイピングでお店のデータをcsvデータで取得する。
 def line_get_data(place):
+    global areacode_s
     f = open('area_s.json', 'r', encoding="utf-8")
     area = json.load(f)
     for x in area['garea_small']:
