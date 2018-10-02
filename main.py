@@ -103,14 +103,11 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
-    nomi_words = {"へ飲み", "で飲"}
-    for i in len(nomi_words):
-        if not nomi_words[i] in event.message.text:
-            return None
-    if "へ" in event.message.text：
-        text_split = event.message.text.split("へ")
-    elif "で" in event.message.text：
-        text_split = event.message.text.split("で")
+    if not {"へ飲みに行くぞ", "で飲むぞ"} in event.message.text:
+        return None
+    # この辺に地名をAPIに投げるコードを記述
+    # 得られた店名とURLを nomiya_info に格納
+    text_split = event.message.text.split("へ")
     place = text_split[0]
     line_get_data(place)
     nomiyas = line_answer()
