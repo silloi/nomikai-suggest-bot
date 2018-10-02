@@ -31,8 +31,8 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
 
-areacode_s = ''
-place = ''
+# areacode_s = ''
+# place = ''
 #スクレイピングでお店のデータをcsvデータで取得する。
 def line_get_data(place):
     global areacode_s
@@ -42,10 +42,10 @@ def line_get_data(place):
         areaname_s = x['areaname_s']
         if place in areaname_s:
             areacode_s = x['areacode_s']
-    data={'京都市':3404,'四条':3414,'河原町':3402}
+    # data={'京都市':3404,'四条':3414,'河原町':3402}
     apikey='0600c456734c0f1315878fc5aeb29fa2&'
-    place=data[place]
-    url='http://api.gnavi.co.jp/RestSearchAPI/20150630/?keyid={key}&format=json&category_s=RSFST09004&areacode_s=AREAS{place}'.format(key=apikey,place=place)
+    # place=data[place]
+    url='http://api.gnavi.co.jp/RestSearchAPI/20150630/?keyid={key}&format=json&category_s=RSFST09004&areacode_s={place}'.format(key=apikey, place = areacode_s)
 
     html=requests.get(url)
 
@@ -114,7 +114,7 @@ def message_text(event):
     line_get_data(place)
     nomiyas = line_answer()
     nomiya = random.choice(nomiyas)
-    TEXT="{}へ飲みに行くぞ！ {}".format(nomiya[0], areacode_s)
+    TEXT="{}へ飲みに行くぞ！ {}".format(nomiya[0], nomiya[1])
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=TEXT) #event.message.text がメッセージの本文
