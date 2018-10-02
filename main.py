@@ -109,7 +109,7 @@ def message_text(event):
     #    text_split = event.message.text.split("で")
     #else:
     #    return None
-    if 'へ飲み' not in event.message.text or 'で飲' not in event.message.text:
+    if ('へ飲み' not in event.message.text) or ('で飲' not in event.message.text):
         return None
     text_split = event.message.text.split("へ")
     place = text_split[0]
