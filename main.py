@@ -33,7 +33,7 @@ from linebot.models import (
 
 #スクレイピングでお店のデータをcsvデータで取得する。
 def line_get_data(place):
-    f = open('area_s', 'r')
+    f = open('area_s.json', 'r')
     area_s = json.load(f)
     for x in area_s:
         if place in x['garea_small']['areaname_s']:
