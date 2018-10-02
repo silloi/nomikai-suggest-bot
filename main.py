@@ -41,6 +41,8 @@ def line_get_data(place):
         areaname_s = x['areaname_s']
         if place in areaname_s:
             areacode_s = x['areacode_s']
+        else:
+            return None
     # data={'京都市':3404,'四条':3414,'河原町':3402}
     apikey='0600c456734c0f1315878fc5aeb29fa2&'
     # place=data[place]
@@ -113,14 +115,14 @@ def message_text(event):
     if '飲' in event.message.text:
         text_split = re.split('[でへ]', event.message.text)
         place = text_split[0]
-        if line_get_data(place) is not None:
-            nomiyas = line_answer()
-            nomiya = random.choice(nomiyas)
-            TEXT="{}へ飲みに行くぞ！ {}".format(nomiya[0], nomiya[1])
-            line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text=TEXT) #event.message.text がメッセージの本文
-            )
+        line_get_data(place)
+        nomiyas = line_answer()
+        nomiya = random.choice(nomiyas)
+        TEXT="{}へ飲みに行くぞ！ {}".format(nomiya[0], nomiya[1])
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=TEXT) #event.message.text がメッセージの本文
+        )
 
 
 if __name__ == "__main__":
