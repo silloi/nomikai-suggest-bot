@@ -19,6 +19,7 @@ import requests
 import json
 import csv
 import random
+import re
 
 from flask import Flask, request, abort
 from linebot import (
@@ -103,12 +104,15 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event): 
-    if 'へ飲み' in event.message.text:
-        text_split = event.message.text.split("へ")
-    elif 'で飲' in event.message.text:
-        text_split = event.message.text.split("で")
-    else:
+#    if 'へ飲み' in event.message.text:
+#        text_split = event.message.text.split("へ")
+#    elif 'で飲' in event.message.text:
+#        text_split = event.message.text.split("で")
+#    else:
+#        return None
+    if ('へ飲み' not in event.message.text or 'で飲' not in event.message.text):
         return None
+    text_split = re.split('[でへ]', event.message.txt)
     place = text_split[0]
     line_get_data(place)
     nomiyas = line_answer()
