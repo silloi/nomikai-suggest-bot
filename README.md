@@ -1,6 +1,5 @@
-# nomikai-suggest-bot (飲み会提案Bot)
+# 飲み会提案Bot
 
-LINE bot suggesting nomiya where nomikai is held
 
 この飲み会提案Botは、LINEを通して、飲み会するお店を提案してくれるBotです。
 
@@ -15,3 +14,5 @@ LINE bot suggesting nomiya where nomikai is held
 # 登録
 
 登録する際は、LINEで以下のQRコードを読み込んでください。
+
+![QRコード](img/49057.jpg)
