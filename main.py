@@ -32,9 +32,10 @@ from linebot.models import (
 )
 
 areacode_s = ''
+place = ''
 #スクレイピングでお店のデータをcsvデータで取得する。
 def line_get_data(place):
-    f = open('area_s.json', 'r')
+    f = open('area_s.json', 'r', encoding="utf-8")
     area = json.load(f)
     for x in area['garea_small']:
         areaname_s = x['areaname_s']
