@@ -112,15 +112,16 @@ def message_text(event):
 #        return None
     if '飲' in event.message.text:
         text_split = re.split('[でへ]', event.message.text)
-        place = text_split[0]
-        line_get_data(place)
-        nomiyas = line_answer()
-        nomiya = random.choice(nomiyas)
-        TEXT="{}へ飲みに行くぞ！ {}".format(nomiya[0], nomiya[1])
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=TEXT) #event.message.text がメッセージの本文
-        )
+        if text_split is not event.message.text:
+            place = text_split[0]
+            line_get_data(place)
+            nomiyas = line_answer()
+            nomiya = random.choice(nomiyas)
+            TEXT="{}へ飲みに行くぞ！ {}".format(nomiya[0], nomiya[1])
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=TEXT) #event.message.text がメッセージの本文
+            )
 
 
 if __name__ == "__main__":
