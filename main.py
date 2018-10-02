@@ -112,7 +112,7 @@ def message_text(event):
 #        return None
     if '飲' in event.message.text:
         text_split = re.split('[でへ]', event.message.text)
-        if text_split == event.message.text:
+        if len(text_split) == 1:
             return None
         else:
             place = text_split[0]
