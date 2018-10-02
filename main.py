@@ -102,13 +102,16 @@ def callback():
 
 
 @handler.add(MessageEvent, message=TextMessage)
-def message_text(event):
-    if 'へ飲み' in event.message.text:
-        text_split = event.message.text.split("へ")
-    elif 'で飲' in event.message.text:
-        text_split = event.message.text.split("で")
-    else:
+def message_text(event): 
+    #if 'へ飲み' in event.message.text:
+    #    text_split = event.message.text.split("へ")
+    #elif 'で飲' in event.message.text:
+    #    text_split = event.message.text.split("で")
+    #else:
+    #    return None
+    if 'へ飲み' not in event.message.text or 'で飲' not in event.message.text:
         return None
+    text_split = event.message.text.split("へ")
     place = text_split[0]
     line_get_data(place)
     nomiyas = line_answer()
