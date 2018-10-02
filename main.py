@@ -112,7 +112,7 @@ def message_text(event):
 #        return None
     if '飲' in event.message.text:
         text_split = re.split('[でへ]', event.message.text)
-        if text_split is not event.message.text:
+        if text_split != event.message.text:
             place = text_split[0]
             line_get_data(place)
             nomiyas = line_answer()
