@@ -117,7 +117,7 @@ def message_text(event):
             line_get_data(place)
             nomiyas = line_answer()
             nomiya = random.choice(nomiyas)
-            TEXT="{}へ飲みに行くぞ！ {}".format(nomiya[0], nomiya[1])
+            TEXT="{}へ飲みに行くぞ！ {}".format(nomiya[0], text_split)
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=TEXT) #event.message.text がメッセージの本文
