@@ -33,6 +33,11 @@ from linebot.models import (
 
 #スクレイピングでお店のデータをcsvデータで取得する。
 def line_get_data(place):
+    f = open('area_s', 'r')
+    area_s = json.load(f)
+    for x in area_s:
+        if place in x['garea_small']['areaname_s']:
+            areacode_s = x['garea_small']['areacode_s']
     data={'京都市':3404,'四条':3414,'河原町':3402}
     apikey='0600c456734c0f1315878fc5aeb29fa2&'
     place=data[place]
@@ -104,8 +109,9 @@ def message_text(event):
     place = text_split[0]
     line_get_data(place)
     nomiyas = line_answer()
+    if nomiyas = 
     nomiya = random.choice(nomiyas)
-    TEXT="{}へ飲みに行くぞ！ {}".format(nomiya[0], nomiya[1])
+    TEXT="{}へ飲みに行くぞ！ {}{}".format(nomiya[0], nomiya[1], areacode_s)
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=TEXT) #event.message.text がメッセージの本文
