@@ -111,7 +111,6 @@ def message_text(event):
     place = text_split[0]
     line_get_data(place)
     nomiyas = line_answer()
-    if nomiyas = 
     nomiya = random.choice(nomiyas)
     TEXT="{}へ飲みに行くぞ！ {} {}".format(nomiya[0], nomiya[1], areacode_s)
     line_bot_api.reply_message(
