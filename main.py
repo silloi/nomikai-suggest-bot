@@ -109,9 +109,6 @@ def message_text(event):
         text_split = event.message.text.split("で")
     else:
         return None
-    # この辺に地名をAPIに投げるコードを記述
-    # 得られた店名とURLを nomiya_info に格納
-    # text_split = event.message.text.split("へ")
     place = text_split[0]
     line_get_data(place)
     nomiyas = line_answer()
@@ -121,6 +118,7 @@ def message_text(event):
         event.reply_token,
         TextSendMessage(text=TEXT) #event.message.text がメッセージの本文
     )
+    areacode_s = 'Initiated'
 
 
 if __name__ == "__main__":
